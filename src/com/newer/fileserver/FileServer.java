@@ -6,6 +6,6 @@ package com.newer.fileserver;
  * @author 
  *
  */
-public class App {
+public class FileServer {
 
 }

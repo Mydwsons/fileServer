@@ -6,6 +6,6 @@ package com.newer.client;
  * @author 
  *
  */
-public class App {
+public class Client {
 
 }
