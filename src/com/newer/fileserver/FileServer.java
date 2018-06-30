@@ -7,5 +7,7 @@ package com.newer.fileserver;
  *
  */
 public class FileServer {
-
+	public static void main(String[] args) {
+		
+	}
 }
