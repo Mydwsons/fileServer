@@ -1,8 +1,10 @@
 package com.newer.fileserver;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -22,6 +24,13 @@ public class FileServer {
 	// 建立一个线程池
 	ExecutorService pool;
 
+	// 定义一个键值对
+	HashMap<String, File> map = new HashMap<>();
+
+	int i = 1;
+
+	ServerCallable callable;
+
 	public void start() throws IOException {
 		// 实例化服务端套接字
 		serversocket = new ServerSocket(port);
@@ -30,11 +39,15 @@ public class FileServer {
 		// 实例化线程池
 		pool = Executors.newFixedThreadPool(5);
 		System.out.println("loading...");
-		// 侦听并返回连接至此的客户端套接字
-		Socket socket = serversocket.accept();
-		System.out.println("建立一个连接");
+		while (true) {
+			// 侦听并返回连接至此的客户端套接字
+			Socket socket = serversocket.accept();
+			System.out.println("建立一个连接");
 
-		pool.submit(new ServerRunnable(socket));
+			pool.submit(callable = new ServerCallable(socket, map, i));
+			i++;
+			map = callable.getMap();
+		}
 
 	}
 
