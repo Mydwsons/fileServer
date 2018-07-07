@@ -29,7 +29,7 @@ public class FileServer {
 
 	int i = 1;
 
-	ServerCallable callable;
+	ServerRunnable runnable;
 
 	public void start() throws IOException {
 		// 实例化服务端套接字
@@ -44,9 +44,9 @@ public class FileServer {
 			Socket socket = serversocket.accept();
 			System.out.println("建立一个连接");
 
-			pool.submit(callable = new ServerCallable(socket, map, i));
+			pool.submit(runnable = new ServerRunnable(socket, map, i));
 			i++;
-			map = callable.getMap();
+			map = runnable.getMap();
 		}
 
 	}

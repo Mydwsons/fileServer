@@ -8,7 +8,7 @@ import java.math.BigInteger;
 import java.net.Socket;
 import java.util.HashMap;
 
-public class ServerCallable implements Runnable {
+public class ServerRunnable implements Runnable {
 
 	Socket socket;
 
@@ -16,7 +16,7 @@ public class ServerCallable implements Runnable {
 
 	int i;
 
-	public ServerCallable(Socket socket, HashMap<String, File> map, int i) {
+	public ServerRunnable(Socket socket, HashMap<String, File> map, int i) {
 		this.socket = socket;
 		this.map = map;
 		this.i = i;
